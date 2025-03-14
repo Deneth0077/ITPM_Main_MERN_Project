@@ -1,11 +1,7 @@
 import Stock from "../models/stock.js"; // Import Stock model
 import { cloudinary } from "../index.js"; // Import cloudinary instance from server.js
 
-/**
- * Uploads an image to Cloudinary if provided
- * @param {Object} file - The uploaded file from Multer
- * @returns {Promise<string|null>} - Cloudinary URL or null
- */
+
 const uploadImageToCloudinary = async (file) => {
   if (!file) return null;
   const result = await cloudinary.uploader.upload(file.buffer, { // Use buffer with memoryStorage
@@ -14,11 +10,7 @@ const uploadImageToCloudinary = async (file) => {
   return result.secure_url;
 };
 
-/**
- * Creates a new stock item
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- */
+
 export const createStock = async (req, res) => {
   try {
     const { name, category, quantity, unit, expirationDate, notes, user } = req.body;
@@ -42,11 +34,7 @@ export const createStock = async (req, res) => {
   }
 };
 
-/**
- * Retrieves all stock items
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- */
+
 export const getAllStock = async (req, res) => {
   try {
     const stock = await Stock.find().populate("user", "name email");
@@ -56,11 +44,7 @@ export const getAllStock = async (req, res) => {
   }
 };
 
-/**
- * Retrieves a stock item by ID
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- */
+
 export const getStockDetail = async (req, res) => {
   try {
     const { id } = req.params;
@@ -74,11 +58,6 @@ export const getStockDetail = async (req, res) => {
   }
 };
 
-/**
- * Updates a stock item
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- */
 export const updateStock = async (req, res) => {
   try {
     const { id } = req.params;
@@ -100,11 +79,6 @@ export const updateStock = async (req, res) => {
   }
 };
 
-/**
- * Deletes a stock item
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- */
 export const deleteStock = async (req, res) => {
   try {
     const { id } = req.params;
