@@ -1,18 +1,5 @@
 import mongoose from "mongoose";
 
-/**
- * @typedef {Object} StockSchema
- * @property {string} name - Name of the stock item (e.g., "Apples")
- * @property {string} category - Category of the item (e.g., "Fruits")
- * @property {number} quantity - Quantity in stock
- * @property {string} unit - Unit of measurement (e.g., "kg")
- * @property {Date} [expirationDate] - Optional expiration date
- * @property {Date} addedDate - Date the item was added
- * @property {string} [notes] - Optional notes
- * @property {mongoose.Types.ObjectId} user - Reference to the user who added it
- * @property {string} [image] - URL of the stock image
- */
-
 const StockSchema = new mongoose.Schema({
   name: { type: String, required: true },
   category: {
